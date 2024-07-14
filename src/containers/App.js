@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CardList from '../components/CardList';
 import SearchBox from '../components/SearchBox';
 import Scroll from '../components/Scroll';
+import ErrorBoundary from '../components/ErrorBoundary';
 import './App.css';
 
 // Main App component
@@ -49,8 +50,10 @@ class App extends Component {
                 <SearchBox searchChange={this.onSearchChange} />
                 {/* Wrapping the CardList component with the Scroll component for scrollable content */}
                 <Scroll>
-                    {/* Passing the filtered robots to the CardList component */}
-                    <CardList robots={filteredRobots} />
+                    <ErrorBoundary>
+                        {/* Passing the filtered robots to the CardList component */}
+                        <CardList robots={filteredRobots} />
+                    </ErrorBoundary>
                 </Scroll>
             </div>
         );
